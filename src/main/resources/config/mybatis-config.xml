@@ -6,7 +6,7 @@
 
     <!-- 配置mybatis的缓存，延迟加载等等一系列属性 -->
     <settings>
-        <setting name="logImpl" value="SLF4J"/>
+        <setting name="logImpl" value="Log4J2"/>
         <!-- 全局映射器启用缓存 -->
         <setting name="cacheEnabled" value="true"/>
 
@@ -52,9 +52,8 @@
         <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
 
-    <!--这里没什么意义-->
-    <!--<plugins>-->
-        <!--&lt;!&ndash; SQL性能拦截器 &ndash;&gt;-->
-        <!--<plugin interceptor="com.base.core.monitor.MybatisMonitor"/>-->
-    <!--</plugins>-->
+    <plugins>
+        <plugin interceptor = "com.admin.luntan.util.SQLMonitorPlugin"/>
+    </plugins>
+
 </configuration>

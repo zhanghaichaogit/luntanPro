@@ -8,12 +8,12 @@
         <version>1.5.2.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.simpleBoot</groupId>
-    <artifactId>simple-boot-parent</artifactId>
+    <groupId>com.luntanBoot</groupId>
+    <artifactId>luntan-boot-parent</artifactId>
     <version>1.0.0</version>
-    <packaging>pom</packaging>
-    <name>simple-boot-parent</name>
-    <description>SpringBoot集成</description>
+    <packaging>jar</packaging>
+    <name>luntan-boot-parent</name>
+    <description>SpringBoot论坛代码</description>
     <properties>
         <pom.datasource.type>com.alibaba.druid.pool.DruidDataSource</pom.datasource.type>
         <pom.datasource.driver-class-name>com.mysql.jdbc.Driver</pom.datasource.driver-class-name>
@@ -32,7 +32,18 @@
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
     </properties>
     <dependencies>
-        <!-- 模板引擎 freemarker，包含spring-boot-starter-web -->
+        <!-- springboot开始 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <!-- 排除logback -->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
@@ -42,6 +53,16 @@
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <!-- Spring boot Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
         <!-- undertow容器 -->
         <dependency>
@@ -59,23 +80,11 @@
             <artifactId>fastjson</artifactId>
             <version>${alibaba.fastjson.version}</version>
         </dependency>
-        <!-- Spring boot Test -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.0</version>
+            <version>3.7</version>
         </dependency>
         <!-- 数据库驱动 -->
         <dependency>
@@ -199,7 +208,7 @@
                 <pom.freemarker.cache>false</pom.freemarker.cache>
                 <!--下面的是默认的mysql配置-->
                 <pom.jdbc.host.url>
-                    jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC
+                    jdbc:mysql://127.0.0.1:3306/luntanpro?characterEncoding=UTF-8
                 </pom.jdbc.host.url>
                 <pom.jdbc.host.username>root</pom.jdbc.host.username>
                 <pom.jdbc.host.password>

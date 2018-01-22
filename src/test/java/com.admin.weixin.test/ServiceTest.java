@@ -1,6 +1,6 @@
-package com.admin.mysql.test;
+package com.admin.weixin.test;
 
-import com.admin.mysql.SimpleApplication;
+import com.admin.luntan.SimpleApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

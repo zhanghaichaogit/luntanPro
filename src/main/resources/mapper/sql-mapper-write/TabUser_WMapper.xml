@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.admin.luntan.dao.write.TabUserWriteDao" >
+  <!-- 单条删除 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from `tab_user` where `id` = #{id,jdbcType=VARCHAR};
+  </delete>
+
+  <!-- 多条删除 -->
+  <delete id="deleteByIds" parameterType="java.util.List" >
+    delete from `tab_user` where `id` in
+  <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+    #{item}
+  </foreach>
+  </delete>
+                              
+  <!-- 选择性删除，根据实际情况，对where条件进行删减 -->
+  <delete id="deleteSelective" parameterType="com.admin.luntan.entity.TabUserEntity" >
+    delete from  `tab_user` where 1=1 
+    <if test="id !=null and id !=''">
+      and `id` like CONCAT('%',#{id,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="username !=null and username !=''">
+      and `username` like CONCAT('%',#{username,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="password !=null and password !=''">
+      and `password` like CONCAT('%',#{password,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="nickname !=null and nickname !=''">
+      and `nickname` like CONCAT('%',#{nickname,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="telephone !=null and telephone !=''">
+      and `telephone` like CONCAT('%',#{telephone,jdbcType=VARCHAR},'%')
+    </if>
+  </delete>
+
+  <!-- 添加 -->
+  <insert id="insert" parameterType="com.admin.luntan.entity.TabUserEntity" >
+    insert into `tab_user` (`id` , `username` , `password` , `nickname` , `telephone` , `sex` , `state` , `created`) values (#{id,jdbcType=VARCHAR} , #{username,jdbcType=VARCHAR} , #{password,jdbcType=VARCHAR} , #{nickname,jdbcType=VARCHAR} , #{telephone,jdbcType=VARCHAR} , #{sex,jdbcType=INTEGER} , #{state,jdbcType=INTEGER} , #{created,jdbcType=INTEGER});
+  </insert>
+
+  <!-- 选择性添加 -->
+  <insert id="insertSelective" parameterType="com.admin.luntan.entity.TabUserEntity" >
+    insert into `tab_user`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !=''">
+        `id`,
+      </if>
+      <if test="username != null and username !=''">
+        `username`,
+      </if>
+      <if test="password != null and password !=''">
+        `password`,
+      </if>
+      <if test="nickname != null and nickname !=''">
+        `nickname`,
+      </if>
+      <if test="telephone != null and telephone !=''">
+        `telephone`,
+      </if>
+      <if test="sex != null or sex == 0">
+        `sex`,
+      </if>
+      <if test="state != null or state == 0">
+        `state`,
+      </if>
+      <if test="created != null or created == 0">
+        `created`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null and id !=''">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null and username !=''">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null and password !=''">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null and nickname !=''">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null and telephone !=''">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null or sex == 0">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="state != null or state == 0">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="created != null or created == 0">
+        #{created,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+                          
+  <!-- 全部更新 -->
+  <update id="updateByPrimaryKey" parameterType="com.admin.luntan.entity.TabUserEntity" >
+    update `tab_user` set 
+    `username` = #{username,jdbcType=VARCHAR} , `password` = #{password,jdbcType=VARCHAR} , `nickname` = #{nickname,jdbcType=VARCHAR} , `telephone` = #{telephone,jdbcType=VARCHAR} , `sex` = #{sex,jdbcType=INTEGER} , `state` = #{state,jdbcType=INTEGER} , `created` = #{created,jdbcType=INTEGER}
+    where `id` = #{id,jdbcType=VARCHAR};
+  </update>
+
+  <!-- 选择性更新 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.admin.luntan.entity.TabUserEntity" >
+    update `tab_user`
+    <set>
+    <if test="username != null">
+      `username`= #{username,jdbcType=VARCHAR},
+    </if>
+    <if test="password != null">
+      `password`= #{password,jdbcType=VARCHAR},
+    </if>
+    <if test="nickname != null">
+      `nickname`= #{nickname,jdbcType=VARCHAR},
+    </if>
+    <if test="telephone != null">
+      `telephone`= #{telephone,jdbcType=VARCHAR},
+    </if>
+    <if test="sex != null or sex == 0">
+      `sex`= #{sex,jdbcType=INTEGER},
+    </if>
+    <if test="state != null or state == 0">
+      `state`= #{state,jdbcType=INTEGER},
+    </if>
+    <if test="created != null or created == 0">
+      `created`= #{created,jdbcType=INTEGER},
+    </if>
+    </set>
+    where `id` = #{id,jdbcType=VARCHAR};
+  </update>
+</mapper>
