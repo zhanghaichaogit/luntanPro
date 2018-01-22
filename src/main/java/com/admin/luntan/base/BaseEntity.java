@@ -32,12 +32,6 @@ public class BaseEntity extends BaseBean {
      */
     private String rowStatus = null;
 
-    /**
-     * 系统锁
-     * <ul><li>0 - 无</li>
-     * <li>1 - 有</li></ul>
-     */
-    private int rowLocked = 0;
 
     /**
      * 分页类
@@ -106,23 +100,6 @@ public class BaseEntity extends BaseBean {
         this.rowStatus = rowStatus;
     }
 
-    /**
-     * 获取行级锁
-     *
-     * @return 是否行级锁，0 - 无，1 - 有
-     */
-    public int getRowLocked() {
-        return rowLocked;
-    }
-
-    /**
-     * 设置前端脚本BootGrid使用的行级锁
-     *
-     * @param rowLocked 是否行级锁，0 - 无，1 - 有
-     */
-    public void setRowLocked(int rowLocked) {
-        this.rowLocked = rowLocked;
-    }
 
     public String toJson() {
         return JsonUtil.toJson(this);
