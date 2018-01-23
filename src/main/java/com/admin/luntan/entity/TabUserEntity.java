@@ -40,12 +40,12 @@ public class TabUserEntity extends BaseEntity {
   private String telephone;
 
   /** 
-   * 1ç”·2å¥³
+   * 1男2女
    */
   private Integer sex;
 
   /** 
-   * 1æ­£å¸¸ï¼Œ2é»‘åå•ï¼Œ3æ³¨é”€
+   * 1正常，2黑名单，3注销
    */
   private Integer state;
 
@@ -54,8 +54,17 @@ public class TabUserEntity extends BaseEntity {
    */
   private Integer created;
 
+  private String img;
 
-  /** 
+  public String getImg() {
+    return img;
+  }
+
+  public void setImg(String img) {
+    this.img = img;
+  }
+
+  /**
    * 获取id属性
    * @return id
    */

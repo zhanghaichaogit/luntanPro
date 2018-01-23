@@ -20,25 +20,25 @@
   <delete id="deleteSelective" parameterType="com.admin.luntan.entity.TabUserEntity" >
     delete from  `tab_user` where 1=1 
     <if test="id !=null and id !=''">
-      and `id` like CONCAT('%',#{id,jdbcType=VARCHAR},'%')
+      and `id` = #{id,jdbcType=VARCHAR}
     </if>
     <if test="username !=null and username !=''">
-      and `username` like CONCAT('%',#{username,jdbcType=VARCHAR},'%')
+      and `username` = #{username,jdbcType=VARCHAR}
     </if>
     <if test="password !=null and password !=''">
-      and `password` like CONCAT('%',#{password,jdbcType=VARCHAR},'%')
+      and `password` = #{password,jdbcType=VARCHAR}
     </if>
     <if test="nickname !=null and nickname !=''">
-      and `nickname` like CONCAT('%',#{nickname,jdbcType=VARCHAR},'%')
+      and `nickname` = #{nickname,jdbcType=VARCHAR}
     </if>
     <if test="telephone !=null and telephone !=''">
-      and `telephone` like CONCAT('%',#{telephone,jdbcType=VARCHAR},'%')
+      and `telephone` = #{telephone,jdbcType=VARCHAR}
     </if>
   </delete>
 
   <!-- 添加 -->
   <insert id="insert" parameterType="com.admin.luntan.entity.TabUserEntity" >
-    insert into `tab_user` (`id` , `username` , `password` , `nickname` , `telephone` , `sex` , `state` , `created`) values (#{id,jdbcType=VARCHAR} , #{username,jdbcType=VARCHAR} , #{password,jdbcType=VARCHAR} , #{nickname,jdbcType=VARCHAR} , #{telephone,jdbcType=VARCHAR} , #{sex,jdbcType=INTEGER} , #{state,jdbcType=INTEGER} , #{created,jdbcType=INTEGER});
+    insert into `tab_user` (`id` , `username` , `password` , `nickname` , `telephone` , `sex` , `img`,`state` , `created`) values (#{id,jdbcType=VARCHAR} , #{username,jdbcType=VARCHAR} , #{password,jdbcType=VARCHAR} , #{nickname,jdbcType=VARCHAR} , #{telephone,jdbcType=VARCHAR} , #{sex,jdbcType=INTEGER} ,#{img,jdbcType=VARCHAR} , #{state,jdbcType=INTEGER} , #{created,jdbcType=INTEGER});
   </insert>
 
   <!-- 选择性添加 -->
@@ -62,6 +62,9 @@
       </if>
       <if test="sex != null or sex == 0">
         `sex`,
+      </if>
+      <if test="img != null or img == 0">
+        `img`,
       </if>
       <if test="state != null or state == 0">
         `state`,
@@ -89,6 +92,9 @@
       <if test="sex != null or sex == 0">
         #{sex,jdbcType=INTEGER},
       </if>
+      <if test="img != null and img !=''">
+        #{img,jdbcType=VARCHAR},
+      </if>
       <if test="state != null or state == 0">
         #{state,jdbcType=INTEGER},
       </if>
@@ -101,7 +107,11 @@
   <!-- 全部更新 -->
   <update id="updateByPrimaryKey" parameterType="com.admin.luntan.entity.TabUserEntity" >
     update `tab_user` set 
-    `username` = #{username,jdbcType=VARCHAR} , `password` = #{password,jdbcType=VARCHAR} , `nickname` = #{nickname,jdbcType=VARCHAR} , `telephone` = #{telephone,jdbcType=VARCHAR} , `sex` = #{sex,jdbcType=INTEGER} , `state` = #{state,jdbcType=INTEGER} , `created` = #{created,jdbcType=INTEGER}
+    `username` = #{username,jdbcType=VARCHAR} , `password` = #{password,jdbcType=VARCHAR} ,
+    `nickname` = #{nickname,jdbcType=VARCHAR} , `telephone` = #{telephone,jdbcType=VARCHAR} ,
+    `sex` = #{sex,jdbcType=INTEGER} ,
+    `img` = #{img,jdbcType=VARCHAR} ,
+    `state` = #{state,jdbcType=INTEGER} , `created` = #{created,jdbcType=INTEGER}
     where `id` = #{id,jdbcType=VARCHAR};
   </update>
 
@@ -123,6 +133,9 @@
     </if>
     <if test="sex != null or sex == 0">
       `sex`= #{sex,jdbcType=INTEGER},
+    </if>
+    <if test="img != null">
+      `img`= #{img,jdbcType=VARCHAR},
     </if>
     <if test="state != null or state == 0">
       `state`= #{state,jdbcType=INTEGER},
