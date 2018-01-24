@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 基础用户控制器
+ *
+ * @author zhanghaichao on 2018/1/24.
+ */
 @Controller
-public class IndexController {
+@RequestMapping("/bususer")
+public class BusUserController {
     @Resource
     private TabUserService tabUserService;
 
@@ -22,11 +28,10 @@ public class IndexController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("findalluser")
+    @RequestMapping("/findalluser")
     public String findUser2() {
         TabUserEntity tabUserEntity = new TabUserEntity();
-        ServiceResult<List<TabUserEntity>> result = tabUserService.searchAllData(tabUserEntity,null);
+        ServiceResult<List<TabUserEntity>> result = tabUserService.searchAllData(tabUserEntity, null);
         return result.toJson();
     }
-
 }
