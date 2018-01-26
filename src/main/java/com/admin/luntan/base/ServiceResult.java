@@ -34,7 +34,7 @@ public class ServiceResult<T> extends BaseEntity{
         this.success = false;
     }
 
-    public boolean isSuccess() {
+    public boolean getSuccess() {
         return success;
     }
 

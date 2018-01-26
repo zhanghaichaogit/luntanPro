@@ -99,4 +99,6 @@ public interface BaseConstant {
      * 分隔符，字符常量“_”
      */
     char UNDERLINE = '_';
+
+    String consumesJson = "application/json";
 }
