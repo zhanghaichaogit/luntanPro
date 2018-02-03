@@ -8,7 +8,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 /**
  * 实体基类
  *
- * @author BBF
+ * @author zhc
  */
 public class BaseEntity extends BaseBean {
     /**
